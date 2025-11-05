@@ -3,262 +3,1664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mussa - Portfolio</title>
+    <title>Mussa Ndauka | Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #f8fafc;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--background);
+            overflow-x: hidden;
         }
-        
+
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        header {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-        
-        .profile-img {
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 180px 0 100px;
+            text-align: center;
+            background: var(--gradient);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="1000,100 1000,0 0,100"></polygon></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            margin-bottom: 20px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 25px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #2575fc;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: #2c3e50;
-        }
-        
-        .about-content {
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            background: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 40px;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
         }
-        
-        .about-text {
-            flex: 1;
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
-        
-        .skills {
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-location i {
+            color: #fbbf24;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category h4 i {
+            color: var(--primary);
+        }
+
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 0.5rem;
         }
-        
-        .skill {
-            background: #e9ecef;
-            padding: 8px 15px;
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--background);
             border-radius: 20px;
             font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            border: 1px solid var(--border);
         }
-        
+
+        /* Projects Section */
+        .projects-section {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
         }
-        
+
         .project-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border);
         }
-        
+
         .project-card:hover {
             transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
-        
+
+        .project-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--primary);
+            color: white;
+        }
+
+        .project-badge.trending {
+            background: var(--secondary);
+        }
+
+        .project-badge.new {
+            background: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .project-title i {
+            color: var(--primary);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .project-meta i {
+            margin-right: 5px;
+        }
+
+        .project-status {
+            color: #10b981;
+        }
+
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
         .project-img {
-            height: 200px;
-            background: #6a11cb;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(37, 99, 235, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .demo-btn, .github-btn {
+            padding: 15px 30px;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+        }
+
+        .github-btn {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .demo-btn:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .github-btn:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-content h4 i {
+            color: var(--primary);
+        }
+
+        .project-description p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem, .solution {
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid;
+        }
+
+        .problem {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .solution {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+
+        .problem h5, .solution h5 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .problem h5 i {
+            color: #ef4444;
+        }
+
+        .solution h5 i {
+            color: #22c55e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .feature-item:hover i {
+            color: white;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-category h5 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: var(--background);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tech-tag.react { background: #dbeafe; color: #1e40af; }
+        .tech-tag.vue { background: #dcfce7; color: #166534; }
+
+        .project-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--background);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
-        
-        .project-content {
-            padding: 20px;
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
         }
-        
-        .project-content h3 {
-            margin-bottom: 10px;
-            color: #2c3e50;
+
+        .contact-details p {
+            color: var(--text-light);
         }
-        
-        .contact-info {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        
-        .contact-item {
-            margin: 15px 0;
-            font-size: 1.1rem;
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
         }
-        
-        footer {
-            background: #2c3e50;
+
+        .social-link:hover {
+            background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 30px 0;
+            transform: translateY(-3px);
         }
-        
+
+        .contact-form {
+            background: var(--background);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-content,
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            .about-content {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-btns {
                 flex-direction: column;
+                align-items: center;
             }
-            
-            h1 {
-                font-size: 2rem;
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
             }
-            
-            section {
-                padding: 60px 0;
+
+            .problem-solution {
+                grid-template-columns: 1fr;
             }
+
+            .project-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 140px 0 60px;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <header>
-        <div class="container">
-            <img src="https://github.com/mussa321.png" alt="Mussa" class="profile-img">
-            <h1>Mussa</h1>
-            <p class="tagline">Full-Stack Developer & Problem Solver</p>
-            <a href="#projects" class="btn">View My Work</a>
-        </div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">
+                    <i class="fas fa-code"></i>
+                    <span>Mussa Ndauka</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                    <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
     </header>
-    
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a passionate developer from Ruvuma, Tanzania with a love for creating efficient, user-friendly web applications. I enjoy turning complex problems into simple, beautiful solutions.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or learning something new.</p>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h1 class="hero-title">Mussa Ndauka</h1>
+                    <p class="hero-subtitle">Full Stack Developer & UI/UX Designer from Tanzania</p>
+                    <div class="hero-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ruvuma, Tanzania</span>
+                    </div>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-eye"></i> View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-paper-plane"></i> Get In Touch
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate developer creating digital solutions for real-world problems</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Transforming Ideas Into Digital Reality</h3>
+                        <p>Hello! I'm Mussa Ndauka, a passionate full-stack developer based in Ruvuma, Tanzania. With over 3 years of experience in web development, I specialize in creating responsive, user-friendly applications that solve real-world problems.</p>
+                        <p>My journey in technology started with a curiosity about how websites work, and it has evolved into a passion for building digital solutions that make people's lives easier. I believe in clean code, thoughtful design, and continuous learning.</p>
+                        <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the beautiful landscapes of Tanzania.</p>
+                    </div>
+                    <div class="about-skills">
+                        <div class="skill-category">
+                            <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Vue.js</span>
+                                <span class="skill-tag">TypeScript</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-server"></i> Backend</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express.js</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Firebase</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-tools"></i> Tools & Others</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">Photoshop</span>
+                                <span class="skill-tag">Webpack</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4><i class="fas fa-language"></i> Languages</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Swahili (Native)</span>
+                                <span class="skill-tag">English (Fluent)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Projects</h2>
+                    <p class="section-subtitle">Real-world applications built with modern technologies</p>
+                </div>
+
+                <div class="projects-grid">
                     
-                    <h3 style="margin-top: 30px;">Skills</h3>
-                    <div class="skills">
-                        <span class="skill">JavaScript</span>
-                        <span class="skill">HTML/CSS</span>
-                        <span class="skill">React</span>
-                        <span class="skill">Node.js</span>
-                        <span class="skill">Python</span>
-                        <span class="skill">Git</span>
-                        <span class="skill">Responsive Design</span>
-                        <span class="skill">UI/UX</span>
+                    <!-- Project 1: E-Commerce Website -->
+                    <article class="project-card fade-in" id="project-1">
+                        <div class="project-header">
+                            <div class="project-badge">Featured</div>
+                            <h3 class="project-title">
+                                <i class="fas fa-shopping-cart"></i>
+                                ShopEasy E-Commerce Platform
+                            </h3>
+                            <div class="project-meta">
+                                <span class="project-date"><i class="far fa-calendar"></i> Jan 2024</span>
+                                <span class="project-status"><i class="fas fa-circle"></i> Live</span>
+                            </div>
+                        </div>
+
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.1&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="ShopEasy E-Commerce Platform Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://shopeasy-demo.netlify.app" class="demo-btn" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                    <a href="https://github.com/mussandauka/shop-easy" class="github-btn" target="_blank">
+                                        <i class="fab fa-github"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-description">
+                                <h4><i class="fas fa-info-circle"></i> Project Overview</h4>
+                                <p>A comprehensive e-commerce solution designed for modern online retail. This platform handles everything from product discovery to secure checkout, providing a seamless shopping experience across all devices.</p>
+                                
+                                <div class="problem-solution">
+                                    <div class="problem">
+                                        <h5><i class="fas fa-exclamation-triangle"></i> Problem</h5>
+                                        <p>Small businesses in Tanzania struggle with expensive e-commerce solutions that lack customization and have high transaction fees, limiting their online presence.</p>
+                                    </div>
+                                    <div class="solution">
+                                        <h5><i class="fas fa-lightbulb"></i> Solution</h5>
+                                        <p>Built a customizable, cost-effective platform with modern UX patterns, integrated payment processing, and localization for Tanzanian market needs.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-features">
+                                <h4><i class="fas fa-star"></i> Key Features</h4>
+                                <div class="features-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-search"></i>
+                                        <span>Advanced product filtering & search</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Real-time cart management</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Secure payment integration</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Progressive Web App (PWA)</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Admin dashboard analytics</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bell"></i>
+                                        <span>Inventory notifications</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-tech">
+                                <h4><i class="fas fa-cogs"></i> Technologies Used</h4>
+                                <div class="tech-stack">
+                                    <div class="tech-category">
+                                        <h5>Frontend</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag react">React 18</span>
+                                            <span class="tech-tag">TypeScript</span>
+                                            <span class="tech-tag">Redux Toolkit</span>
+                                            <span class="tech-tag">Tailwind CSS</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>Backend</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Node.js</span>
+                                            <span class="tech-tag">Express.js</span>
+                                            <span class="tech-tag">MongoDB</span>
+                                            <span class="tech-tag">JWT Auth</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>Services</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Stripe API</span>
+                                            <span class="tech-tag">Cloudinary</span>
+                                            <span class="tech-tag">SendGrid</span>
+                                            <span class="tech-tag">Redis</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">15k+</span>
+                                    <span class="stat-label">Lines of Code</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">94%</span>
+                                    <span class="stat-label">Performance Score</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">2.3s</span>
+                                    <span class="stat-label">Load Time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2: Task Management App -->
+                    <article class="project-card fade-in" id="project-2">
+                        <div class="project-header">
+                            <div class="project-badge trending">Trending</div>
+                            <h3 class="project-title">
+                                <i class="fas fa-tasks"></i>
+                                TaskFlow Productivity Suite
+                            </h3>
+                            <div class="project-meta">
+                                <span class="project-date"><i class="far fa-calendar"></i> Mar 2024</span>
+                                <span class="project-status"><i class="fas fa-circle"></i> Live</span>
+                            </div>
+                        </div>
+
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.1&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="TaskFlow Productivity Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://taskflow-demo.vercel.app" class="demo-btn" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                    <a href="https://github.com/mussandauka/taskflow-app" class="github-btn" target="_blank">
+                                        <i class="fab fa-github"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-description">
+                                <h4><i class="fas fa-info-circle"></i> Project Overview</h4>
+                                <p>A collaborative task management platform designed for modern teams. Features real-time synchronization, intuitive drag-and-drop interface, and comprehensive project tracking capabilities.</p>
+                                
+                                <div class="problem-solution">
+                                    <div class="problem">
+                                        <h5><i class="fas fa-exclamation-triangle"></i> Problem</h5>
+                                        <p>Teams in growing Tanzanian businesses face productivity loss due to scattered task management across multiple tools without proper collaboration features.</p>
+                                    </div>
+                                    <div class="solution">
+                                        <h5><i class="fas fa-lightbulb"></i> Solution</h5>
+                                        <p>Centralized platform with real-time updates, team collaboration, and advanced project visualization tools tailored for African business workflows.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-features">
+                                <h4><i class="fas fa-star"></i> Key Features</h4>
+                                <div class="features-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-arrows-alt"></i>
+                                        <span>Drag & drop task management</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bolt"></i>
+                                        <span>Real-time collaboration</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-chart-pie"></i>
+                                        <span>Progress analytics dashboard</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Cross-platform PWA</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-comments"></i>
+                                        <span>Team commenting system</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bell"></i>
+                                        <span>Smart notifications</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-tech">
+                                <h4><i class="fas fa-cogs"></i> Technologies Used</h4>
+                                <div class="tech-stack">
+                                    <div class="tech-category">
+                                        <h5>Frontend</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag vue">Vue.js 3</span>
+                                            <span class="tech-tag">Pinia</span>
+                                            <span class="tech-tag">TypeScript</span>
+                                            <span class="tech-tag">SCSS</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>Backend</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Firebase</span>
+                                            <span class="tech-tag">Cloud Functions</span>
+                                            <span class="tech-tag">Firestore</span>
+                                            <span class="tech-tag">Redis</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>Real-time</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Socket.io</span>
+                                            <span class="tech-tag">WebRTC</span>
+                                            <span class="tech-tag">Service Worker</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">12k+</span>
+                                    <span class="stat-label">Lines of Code</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">98%</span>
+                                    <span class="stat-label">Accessibility</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">50ms</span>
+                                    <span class="stat-label">Real-time Sync</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3: Weather Dashboard -->
+                    <article class="project-card fade-in" id="project-3">
+                        <div class="project-header">
+                            <div class="project-badge new">New</div>
+                            <h3 class="project-title">
+                                <i class="fas fa-cloud-sun"></i>
+                                ClimateSense Weather Platform
+                            </h3>
+                            <div class="project-meta">
+                                <span class="project-date"><i class="far fa-calendar"></i> Jun 2024</span>
+                                <span class="project-status"><i class="fas fa-circle"></i> Live</span>
+                            </div>
+                        </div>
+
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.1&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="ClimateSense Weather Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://climatesense.vercel.app" class="demo-btn" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                    <a href="https://github.com/mussandauka/climatesense" class="github-btn" target="_blank">
+                                        <i class="fab fa-github"></i> Source Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-description">
+                                <h4><i class="fas fa-info-circle"></i> Project Overview</h4>
+                                <p>An advanced weather visualization platform providing hyper-local forecasts, severe weather alerts, and interactive meteorological data visualization tailored for East African climate patterns.</p>
+                                
+                                <div class="problem-solution">
+                                    <div class="problem">
+                                        <h5><i class="fas fa-exclamation-triangle"></i> Problem</h5>
+                                        <p>Existing weather apps provide limited historical data and poor visualization of weather patterns over time, especially for agricultural planning in Tanzania.</p>
+                                    </div>
+                                    <div class="solution">
+                                        <h5><i class="fas fa-lightbulb"></i> Solution</h5>
+                                        <p>Comprehensive weather platform with interactive maps, historical data analysis, and personalized alerts specifically designed for Tanzanian farmers and businesses.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-features">
+                                <h4><i class="fas fa-star"></i> Key Features</h4>
+                                <div class="features-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        <span>Interactive weather maps</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-history"></i>
+                                        <span>10-day forecast with trends</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>Historical data analysis</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bell"></i>
+                                        <span>Severe weather alerts</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-sun"></i>
+                                        <span>UV & air quality index</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Offline functionality</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-tech">
+                                <h4><i class="fas fa-cogs"></i> Technologies Used</h4>
+                                <div class="tech-stack">
+                                    <div class="tech-category">
+                                        <h5>Frontend</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">JavaScript ES6+</span>
+                                            <span class="tech-tag">Chart.js</span>
+                                            <span class="tech-tag">Leaflet.js</span>
+                                            <span class="tech-tag">CSS Grid</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>APIs & Services</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">OpenWeather API</span>
+                                            <span class="tech-tag">Geolocation API</span>
+                                            <span class="tech-tag">Local Storage</span>
+                                            <span class="tech-tag">IndexedDB</span>
+                                        </div>
+                                    </div>
+                                    <div class="tech-category">
+                                        <h5>Performance</h5>
+                                        <div class="tech-tags">
+                                            <span class="tech-tag">Service Worker</span>
+                                            <span class="tech-tag">Web Workers</span>
+                                            <span class="tech-tag">Lazy Loading</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">8k+</span>
+                                    <span class="stat-label">Lines of Code</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">99.9%</span>
+                                    <span class="stat-label">API Uptime</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">1.2s</span>
+                                    <span class="stat-label">Data Load Time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's work together to bring your ideas to life</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Ruvuma, Tanzania</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>mussandauka321@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+255 XXX XXX XXX</p>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="projects" style="background: #f1f3f5;">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">Project 1</div>
-                    <div class="project-content">
-                        <h3>E-Commerce Website</h3>
-                        <p>A fully responsive e-commerce platform with product filtering, cart functionality, and secure checkout process.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-col">
+                    <h4>Mussa Ndauka</h4>
+                    <p>Full Stack Developer from Tanzania passionate about creating digital solutions that solve real-world problems and improve people's lives.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-img">Project 2</div>
-                    <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A productivity application for managing tasks with drag-and-drop functionality and team collaboration features.</p>
-                    </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-img">Project 3</div>
-                    <div class="project-content">
-                        <h3>Weather Dashboard</h3>
-                        <p>A clean, intuitive weather application that displays current conditions and forecasts for multiple locations.</p>
-                    </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Apps</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Consulting</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-info">
-                <p>I'm always interested in new opportunities and collaborations.</p>
-                
-                <div class="contact-item">
-                    <strong>Email:</strong> mussandauka321@gmail.com
-                </div>
-                
-                <div class="contact-item">
-                    <strong>Location:</strong> Ruvuma, Tanzania
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mussa Ndauka. All rights reserved. | Built with passion in Ruvuma, Tanzania</p>
             </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Mussa. All rights reserved.</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Built with HTML, CSS, and JavaScript</p>
         </div>
     </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+
+            // Update copyright year
+            const yearElement = document.querySelector('.footer-bottom p');
+            if (yearElement) {
+                const currentYear = new Date().getFullYear();
+                yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
 </body>
-            </html>
+    </html>
